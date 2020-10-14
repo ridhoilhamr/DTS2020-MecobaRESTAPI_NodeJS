@@ -8,7 +8,7 @@ import router from './router.js';
 
 const app= express();
 
-// Connect to DB
+// Connect to Database
 mongoose.connect(process.env.MONGODB_URI,
 {
     useNewUrlParser: true,
@@ -32,9 +32,6 @@ app.get('/', (req,res) => {
 
 // http://localhost:8080/api/homework
 app.use('/api', router);
-
-// const PORT = process.env.PORT || '4000';
-
 
 app.listen(process.env.PORT, () => {
     console.log(`App listens to port ${process.env.PORT}`);
