@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
@@ -6,7 +9,7 @@ import router from './router.js';
 const app= express();
 
 // Connect to DB
-mongoose.connect('mongodb+srv://admin:admin@cluster0.ku36s.mongodb.net/jadwalin?retryWrites=true&w=majority', 
+mongoose.connect(process.env.MONGODB_URI,
 {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -30,7 +33,9 @@ app.get('/', (req,res) => {
 // http://localhost:8080/api/homework
 app.use('/api', router);
 
+// const PORT = process.env.PORT || '4000';
 
-app.listen('8080', () => {
-    console.log('App listens to port 8080');
+
+app.listen(process.env.PORT, () => {
+    console.log(`App listens to port ${process.env.PORT}`);
 });
